@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drive Link Privacy Policy</title>
+  <style>
+    body { font-family: Georgia, "Times New Roman", serif; max-width: 42rem; margin: 2rem auto; padding: 0 1.25rem; line-height: 1.55; color: #111; }
+    h1, h2 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.15rem; margin-top: 1.8rem; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+    th, td { border: 1px solid #ccc; padding: 0.45rem 0.55rem; vertical-align: top; text-align: left; }
+    .meta { color: #444; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <h1>Drive Link Privacy Policy</h1>
+  <p class="meta">Effective date: 19 September 2026<br>
+  Product: Drive Link Chrome extension (version 1.0.30 and later)<br>
+  Operator: Dragoș Ailenii, doing business as Drive Link Dispatch<br>
+  Contact: <a href="mailto:aileniidragoss@gmail.com">aileniidragoss@gmail.com</a></p>
+
+  <p>Drive Link is a Chrome extension for freight dispatchers. It adds deadhead-adjusted rate-per-mile, Gmail load checks, Google Maps routing, copy actions, and optional broker factoring grades to DAT One and Truckstop load boards. This policy describes the data Drive Link handles and where it goes.</p>
+
+  <h2>The short version</h2>
+  <ul>
+    <li>Drive Link does not create a Drive Link user account and does not include advertising or analytics SDKs.</li>
+    <li>Email is sent only when you click a send control, through your connected Gmail account. Drive Link cannot read your inbox. The Gmail permission it uses is <code>gmail.send</code>.</li>
+    <li>When Checking is enabled (the default for new installs), opening supported load details sends the broker’s MC number to the Drive Link credit service so a factoring grade can be shown. You can turn Checking off in Settings.</li>
+    <li>Map geocoding and routing for the in-page trip map use public OpenStreetMap services. Clicking Maps also opens Google Maps with the lane you chose.</li>
+  </ul>
+
+  <h2>Data Drive Link handles</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Where it lives</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Connected Google account email</td><td>Chrome local storage on your device</td><td>Shown as the connected account and used as the From address of messages you send</td></tr>
+      <tr><td>Google OAuth access token</td><td>Chrome local storage; expires after about one hour</td><td>Authorizes the Gmail messages you send; deleted on sign-out</td></tr>
+      <tr><td>Settings (email templates, MC number, signature, truck origin, RPM threshold, Checking on/off)</td><td>Chrome sync storage</td><td>So your setup follows your Chrome profile</td></tr>
+      <tr><td>Load-board row content (lanes, rates, broker names, emails, phones, MC numbers)</td><td>Read from the open DAT One or Truckstop tab; not stored except as described below</td><td>To compute rate-per-mile, fill your email template, copy a summary, and request a grade</td></tr>
+      <tr><td>Broker factoring grades keyed by MC number</td><td>Chrome local storage; treated as stale after about 24 hours</td><td>So the same broker is not looked up on every scan</td></tr>
+      <tr><td>Recent send records (broker address, lane, rate of loads you emailed)</td><td>Chrome local storage</td><td>The check mark that helps prevent duplicate sends</td></tr>
+      <tr><td>Client IP address</td><td>Held briefly in memory on the Drive Link credit gateway</td><td>Request-rate limits only; not used to build a profile</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Where data goes when you act</h2>
+  <ol>
+    <li><strong>Gmail send.</strong> When you click Email, Drive Link sends one message through Google’s Gmail API from your account. The message contains the displayed broker address, load details, and your template (typically MC number, truck location, and signature). Drive Link never sends email on its own.</li>
+    <li><strong>Broker grade checking.</strong> If Checking is on, opening supported load details sends the broker MC number to <code>https://credit.drivelinkdispatch.com</code>. The service returns an available RTS factoring grade or an unavailable/no-record result. Grades may be cached by the central service and on your device. Grades can be missing or outdated and do not guarantee payment. Ordinary users do not provide an RTS login or service key.</li>
+    <li><strong>In-page map.</strong> City and state names from the load (and your saved truck origin, if set) are sent to Photon (photon.komoot.io) and the OSRM router (routing.openstreetmap.de) to draw the trip.</li>
+    <li><strong>Google Maps.</strong> Clicking Maps opens Google Maps in a new tab with truck origin, pickup, and delivery, the same as if you typed those places yourself.</li>
+    <li><strong>Copy.</strong> The Copy control puts a load summary on your clipboard. Drive Link does not read clipboard contents.</li>
+  </ol>
+
+  <h2>Parties that receive data</h2>
+  <ul>
+    <li><strong>Google</strong> — OAuth, Gmail send, and Google Maps if you click Maps.</li>
+    <li><strong>Drive Link credit service</strong> (operated by us at credit.drivelinkdispatch.com) — broker MC numbers when Checking is on; client IP for rate limits.</li>
+    <li><strong>Komoot Photon and OpenStreetMap OSRM</strong> — place names used to draw the in-page map.</li>
+    <li><strong>The broker you choose</strong> — the email you send.</li>
+    <li><strong>DAT One / Truckstop</strong> — Drive Link reads the page you already have open; it does not log you into those sites or replace your load-board subscription.</li>
+  </ul>
+  <p>We do not sell user data. We do not use Drive Link data to determine your personal creditworthiness or to make loans. Broker factoring grades are business information about the listed broker, shown so you can decide whether to take a load.</p>
+
+  <h2>Permissions</h2>
+  <p>Drive Link uses <code>storage</code>, <code>identity</code>, <code>clipboardWrite</code>, and <code>tabs</code>, plus host access to DAT One, Truckstop, Gmail/Google OAuth, the Drive Link credit service, and the public map geocoders/routers named above. It does not read your Gmail inbox or your clipboard.</p>
+
+  <h2>Retention and your controls</h2>
+  <ul>
+    <li>Sign out of Gmail in Drive Link to delete the stored OAuth token and connected email on your device.</li>
+    <li>Turn Checking off to stop sending MC numbers to the credit service.</li>
+    <li>Uninstalling the extension removes its Chrome storage on that profile.</li>
+    <li>Gateway IP limits are in-memory. Cached grades on the central service are retained only as needed to serve repeated lookups and are not a public directory of your activity.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>Drive Link is for professional freight dispatch. It is not directed at children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>If data practices change, this page will be updated and the new date shown above. Material changes will also be described in the Chrome Web Store listing or in-product notices as required.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:aileniidragoss@gmail.com">aileniidragoss@gmail.com</a>.</p>
+</body>
+</html>
